@@ -140,7 +140,7 @@ module Ansi
       def tokenize(text)
         tokens = [
           # characters to remove completely
-          [/\A\x08+/, lambda { |m| '' }],
+          [/\A\x08+|\e\[0K/, lambda { |m| '' }],
 
           [/\A\x1b\[38;5;(\d+)m/, lambda { |m| yield :xterm256f, $1.to_i; '' } ],
           [/\A\x1b\[48;5;(\d+)m/, lambda { |m| yield :xterm256b, $1.to_i; '' } ],
